@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using eRetailOnWeb.Models;
+using eProductOnWeb.Models;
 
-namespace eRetailOnWeb.Controllers
+namespace eProductOnWeb.Controllers
 {
     public class HomeController : Controller
     {

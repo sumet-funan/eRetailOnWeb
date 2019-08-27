@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace eRetailOnWeb.BusinessLogics
+namespace eProductOnWeb.BusinessLogics
 {
     public class Class1
     {

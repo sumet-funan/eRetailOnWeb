@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace eRetailOnWeb.Commons
+namespace eProductOnWeb.Commons
 {
     public class Class1
     {

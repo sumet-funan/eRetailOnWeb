@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\eRetailOnWeb.Commons\eProductOnWeb.Commons.csproj" />
+    <ProjectReference Include="..\eRetailOnWeb.DataAccess\eProductOnWeb.DataAccess.csproj" />
+    <ProjectReference Include="..\eRetailOnWeb.Models\eProductOnWeb.Models.csproj" />
+  </ItemGroup>
+
+</Project>

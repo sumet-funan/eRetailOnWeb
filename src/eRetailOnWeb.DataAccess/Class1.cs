@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace eRetailOnWeb.DataAccess
+namespace eProductOnWeb.DataAccess
 {
     public class Class1
     {

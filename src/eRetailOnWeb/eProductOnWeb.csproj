@@ -9,13 +9,14 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <ProjectReference Include="..\eRetailOnWeb.BusinessLogics\eRetailOnWeb.BusinessLogics.csproj" />
-    <ProjectReference Include="..\eRetailOnWeb.Commons\eRetailOnWeb.Commons.csproj" />
-    <ProjectReference Include="..\eRetailOnWeb.Models\eRetailOnWeb.Models.csproj" />
+    <ProjectReference Include="..\eRetailOnWeb.BusinessLogics\eProductOnWeb.BusinessLogics.csproj" />
+    <ProjectReference Include="..\eRetailOnWeb.Commons\eProductOnWeb.Commons.csproj" />
+    <ProjectReference Include="..\eRetailOnWeb.Models\eProductOnWeb.Models.csproj" />
   </ItemGroup>
 
 </Project>
