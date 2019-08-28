@@ -19,10 +19,14 @@ namespace eProductOnWeb.Controllers
 
         public IActionResult Increase(int id, int increaseNumber)
         {
-            var containerViewModel = _containerViewModelList.Find(x => x.Id == id);
+            ContainerViewModel containerViewModel = _containerViewModelList.Find(x => x.Id == id);
+
+            if (containerViewModel == null) return View(nameof(Index), _containerViewModelList);
+
             containerViewModel.Id += increaseNumber;
             containerViewModel.Name = $"Container {containerViewModel.Id}";
             containerViewModel.Description = $"Container Description {containerViewModel.Id}";
+
             return View(nameof(Index), _containerViewModelList);
         }
 
