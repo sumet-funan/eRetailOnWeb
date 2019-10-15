@@ -1,0 +1,44 @@
+﻿@model List<eProductOnWeb.Models.Ranking>
+
+@{
+    ViewData["Title"] = "Underlords Ranking";
+}
+
+<h1>Underlords Ranking</h1>
+<br />
+@foreach (var item in Model)
+{
+    @Html.Label(item.Day)
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Rating
+                </th>
+                <th>
+                    Point
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var rankingProfile in item.Data.OrderByDescending(x => x.Point))
+            {
+                <tr>
+                    <td>
+                        @rankingProfile.UserName
+                    </td>
+                    <td>
+                        @rankingProfile.Rating
+                    </td>
+                    <td>
+                        @rankingProfile.Point
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
