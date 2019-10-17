@@ -1,4 +1,4 @@
-﻿@model List<eProductOnWeb.Models.Ranking>
+﻿@model eProductOnWeb.Models.Underlords.Ranking
 
 @{
     ViewData["Title"] = "Underlords Ranking";
@@ -6,7 +6,7 @@
 
 <h1>Underlords Ranking</h1>
 <br />
-@foreach (var item in Model)
+@foreach (var item in Model.WeekInformation)
 {
     @Html.Label(item.Day)
     <table class="table">
@@ -24,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var rankingProfile in item.Data.OrderByDescending(x => x.Point))
+            @foreach (var rankingProfile in item.DayInformation.OrderByDescending(x => x.Point))
             {
                 <tr>
                     <td>
