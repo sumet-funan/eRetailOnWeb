@@ -9,7 +9,7 @@ namespace eProductOnWeb.Models.Underlords
     {
         public int UserId { get; set; }
         public string UserName { get; set; }
-        public int Rating { get; set; }
+        public string Rating { get; set; }
         public double Point { get; set; }
         public bool HasBuffer { get; set; }
     }
