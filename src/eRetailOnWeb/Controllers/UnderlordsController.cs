@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using eProductOnWeb.Models;
+using eProductOnWeb.Models.Underlords;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eProductOnWeb.Controllers
@@ -12,53 +13,55 @@ namespace eProductOnWeb.Controllers
     {
         private static HttpClient client = new HttpClient();
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int year, int month, int weekOfMonth)
         {
-            string path = @"https://eea963a2-cb0d-4f72-82a9-73650417333c.mock.pstmn.io/underlords/get";
-            HttpResponseMessage response = await client.GetAsync(path);
+            string endpoint = @"https://eea963a2-cb0d-4f72-82a9-73650417333c.mock.pstmn.io/underlords/get";
+            string queryString = $"?year={year}&month={month}&weekOfMonth={weekOfMonth}";
+            string url = endpoint + queryString;
+            HttpResponseMessage response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {
-                var result = await response.Content.ReadAsAsync<List<Ranking>>();
+                var result = await response.Content.ReadAsAsync<Ranking>();
 
-                Ranking ranking = new Ranking
+                WeekInformation ranking = new WeekInformation
                 {
                     Day = "Total",
                     DayOfWeek = 99,
-                    Data = GetTotalRankingProfile(result)
+                    DayInformation = GetTotalRankingProfile(result.WeekInformation)
                 };
-                result.Add(ranking);
+                result.WeekInformation.Add(ranking);
                 return View(result);
             }
 
-            List<Ranking> rankings = new List<Ranking> { new Ranking { Data = new List<RankingProfile>() } };
+            Ranking rankings = new Ranking { WeekInformation = new List<WeekInformation> { new WeekInformation { DayInformation = new List<DayInformation>() } } };
             return View(rankings);
         }
 
-        private List<RankingProfile> GetTotalRankingProfile(List<Ranking> result)
+        private List<DayInformation> GetTotalRankingProfile(List<WeekInformation> result)
         {
-            return new List<RankingProfile>
+            return new List<DayInformation>
                     {
-                        new RankingProfile
+                        new DayInformation
                         {
                             UserName = "B",
                             Point = GetPointTatal(result, "B"),
                         },
-                        new RankingProfile
+                        new DayInformation
                         {
                             UserName = "TOP",
                             Point = GetPointTatal(result, "TOP"),
                         },
-                        new RankingProfile
+                        new DayInformation
                         {
                             UserName = "NEIL",
                             Point = GetPointTatal(result, "NEIL"),
                         },
-                        new RankingProfile
+                        new DayInformation
                         {
                             UserName = "OAT",
                             Point = GetPointTatal(result, "OAT"),
                         },
-                        new RankingProfile
+                        new DayInformation
                         {
                             UserName = "NOT",
                             Point = GetPointTatal(result, "NOT"),
@@ -66,12 +69,12 @@ namespace eProductOnWeb.Controllers
                     };
         }
 
-        private double GetPointTatal(List<Ranking> rankings, string userName)
+        private double GetPointTatal(List<WeekInformation> weekInformations, string userName)
         {
             double totalPoint = 0;
-            foreach (Ranking ranking in rankings)
+            foreach (WeekInformation weekInformation in weekInformations)
             {
-                totalPoint += ranking.Data.Where(x => x.UserName == userName).Select(x => x.Point).FirstOrDefault();
+                totalPoint += weekInformation.DayInformation.Where(x => x.UserName == userName).Select(x => x.Point).FirstOrDefault();
             }
             return totalPoint;
         }
