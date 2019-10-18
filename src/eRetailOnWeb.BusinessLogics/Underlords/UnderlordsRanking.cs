@@ -25,7 +25,12 @@ namespace eProductOnWeb.BusinessLogics.Underlords
             _blob = new Blob(_configuration);
             string contents = _blob.GetUnderlordsWeekRanking(containerName, fileName);
             Ranking ranking = JsonConvert.DeserializeObject<Ranking>(contents);
+            GetWeekOnformationTotalPoint(ranking);
+            return ranking;
+        }
 
+        private void GetWeekOnformationTotalPoint(Ranking ranking)
+        {
             WeekInformation weekInfoTotal = new WeekInformation
             {
                 Day = "Total",
@@ -39,7 +44,6 @@ namespace eProductOnWeb.BusinessLogics.Underlords
             };
 
             ranking.WeekInformation.Add(weekInfoTotal);
-            return ranking;
         }
 
         private DayInformation GetTotalPointOfWeek(List<WeekInformation> weekInformations, string userName)
