@@ -40,22 +40,22 @@ namespace eProductOnWeb.BusinessLogics.Underlords
             WeekInformation weekInfo = ranking.WeekInformation.Where(x => x.DayOfWeek == 2).FirstOrDefault();
             foreach (var dayInformation in weekInfo.DayInformation)
             {
-                weekInfoTotal.DayInformation.Add(GetTotalPointOfWeek(ranking.WeekInformation, dayInformation.UserName));
+                weekInfoTotal.DayInformation.Add(GetTotalPointOfPlayer(ranking.WeekInformation, dayInformation.UserName));
             };
 
             ranking.WeekInformation.Add(weekInfoTotal);
         }
 
-        private DayInformation GetTotalPointOfWeek(List<WeekInformation> weekInformations, string userName)
+        private DayInformation GetTotalPointOfPlayer(List<WeekInformation> weekInformations, string userName)
         {
             return new DayInformation
             {
                 UserName = userName,
-                Point = GetTotalPoint(weekInformations, userName),
+                Point = CalculateOfficialTotalPoint(weekInformations, userName),
             };
         }
 
-        private double GetTotalPoint(List<WeekInformation> weekInformations, string userName)
+        private double CalculateOfficialTotalPoint(List<WeekInformation> weekInformations, string userName)
         {
             double totalPoint = 0;
             foreach (WeekInformation weekInformation in weekInformations)
