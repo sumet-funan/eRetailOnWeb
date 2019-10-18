@@ -1,0 +1,232 @@
+{
+    "year": 2019,
+    "month": 10,
+    "weekOfMonth": 3,
+    "weekInformation": [
+        {
+            "dayOfWeek": 2,
+            "day": "Monday",
+            "matchInformation": {
+                "officially": false,
+                "isPlay": false
+            },
+            "dayInformation": [
+                {
+                    "userId": 1,
+                    "userName": "B",
+                    "rating": "-",
+                    "point": 0,
+                    "hasBuffer": false
+                },
+                {
+                    "userId": 2,
+                    "userName": "NOT",
+                    "rating": "-",
+                    "point": 0,
+                    "hasBuffer": false
+                },
+                {
+                    "userId": 3,
+                    "userName": "TOP",
+                    "rating": "-",
+                    "point": 0,
+                    "hasBuffer": false
+                },
+                {
+                    "userId": 4,
+                    "userName": "NEIL",
+                    "rating": "-",
+                    "point": 0,
+                    "hasBuffer": false
+                },
+                {
+                    "userId": 5,
+                    "userName": "OAT",
+                    "rating": "-",
+                    "point": 0,
+                    "hasBuffer": false
+                }
+            ]
+        },
+        {
+            "dayOfWeek": 3,
+            "day": "Tuesday",
+            "matchInformation": {
+                "officially": true,
+                "isPlay": true
+            },
+            "dayInformation": [
+                {
+                    "userId": 1,
+                    "userName": "B",
+                    "rating": "6",
+                    "point": -1,
+                    "hasBuffer": true
+                },
+                {
+                    "userId": 2,
+                    "userName": "NOT",
+                    "rating": "3",
+                    "point": 1,
+                    "hasBuffer": false
+                },
+                {
+                    "userId": 3,
+                    "userName": "TOP",
+                    "rating": "4",
+                    "point": 0.5,
+                    "hasBuffer": false
+                },
+                {
+                    "userId": 4,
+                    "userName": "NEIL",
+                    "rating": "2",
+                    "point": 2,
+                    "hasBuffer": false
+                },
+                {
+                    "userId": 5,
+                    "userName": "OAT",
+                    "rating": "1",
+                    "point": 3,
+                    "hasBuffer": false
+                }
+            ]
+        },
+        {
+            "dayOfWeek": 4,
+            "day": "Wednesday",
+            "matchInformation": {
+                "officially": true,
+                "isPlay": true
+            },
+            "dayInformation": [
+                {
+                    "userId": 1,
+                    "userName": "B",
+                    "rating": "6",
+                    "point": -1,
+                    "hasBuffer": false
+                },
+                {
+                    "userId": 2,
+                    "userName": "NOT",
+                    "rating": "7",
+                    "point": -2,
+                    "hasBuffer": false
+                },
+                {
+                    "userId": 3,
+                    "userName": "TOP",
+                    "rating": "2",
+                    "point": 2,
+                    "hasBuffer": false
+                },
+                {
+                    "userId": 4,
+                    "userName": "NEIL",
+                    "rating": "1",
+                    "point": 3,
+                    "hasBuffer": false
+                },
+                {
+                    "userId": 5,
+                    "userName": "OAT",
+                    "rating": "4",
+                    "point": 0.5,
+                    "hasBuffer": false
+                }
+            ]
+        },
+        {
+            "dayOfWeek": 5,
+            "day": "Thursday",
+            "matchInformation": {
+                "officially": false,
+                "isPlay": true
+            },
+            "dayInformation": [
+                {
+                    "userId": 1,
+                    "userName": "B",
+                    "rating": "3",
+                    "point": 1,
+                    "hasBuffer": false
+                },
+                {
+                    "userId": 2,
+                    "userName": "NOT",
+                    "rating": "5",
+                    "point": -0.5,
+                    "hasBuffer": true
+                },
+                {
+                    "userId": 3,
+                    "userName": "TOP",
+                    "rating": "-",
+                    "point": 0,
+                    "hasBuffer": false
+                },
+                {
+                    "userId": 4,
+                    "userName": "NEIL",
+                    "rating": "4",
+                    "point": 0.5,
+                    "hasBuffer": false
+                },
+                {
+                    "userId": 5,
+                    "userName": "OAT",
+                    "rating": "6",
+                    "point": -1,
+                    "hasBuffer": true
+                }
+            ]
+        },
+        {
+            "dayOfWeek": 6,
+            "day": "Friday",
+            "matchInformation": {
+                "officially": false,
+                "isPlay": true
+            },
+            "dayInformation": [
+                {
+                    "userId": 1,
+                    "userName": "B",
+                    "rating": "-",
+                    "point": 0,
+                    "hasBuffer": false
+                },
+                {
+                    "userId": 0,
+                    "userName": "NOT",
+                    "rating": "-",
+                    "point": 0,
+                    "hasBuffer": false
+                },
+                {
+                    "userId": 3,
+                    "userName": "TOP",
+                    "rating": "-",
+                    "point": 0,
+                    "hasBuffer": false
+                },
+                {
+                    "userId": 4,
+                    "userName": "NEIL",
+                    "rating": "-",
+                    "point": 0,
+                    "hasBuffer": false
+                },
+                {
+                    "userId": 5,
+                    "userName": "OAT",
+                    "rating": "-",
+                    "point": 0,
+                    "hasBuffer": false
+                }
+            ]
+        }
+    ]
+}

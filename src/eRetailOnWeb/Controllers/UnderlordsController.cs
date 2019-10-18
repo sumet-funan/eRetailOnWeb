@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using eProductOnWeb.Models;
 using eProductOnWeb.Models.Underlords;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Storage;
+using Microsoft.Azure.Storage.Blob;
 
 namespace eProductOnWeb.Controllers
 {
@@ -38,13 +41,47 @@ namespace eProductOnWeb.Controllers
                 };
                 result.WeekInformation.Add(ranking);
 
-
+                GetInformationFromStorageBlob();
 
                 return View(result);
             }
 
             Ranking rankings = new Ranking { WeekInformation = new List<WeekInformation> { new WeekInformation { DayInformation = new List<DayInformation>() } } };
             return View(rankings);
+        }
+
+        private void GetInformationFromStorageBlob()
+        {
+            ProcessAsync().GetAwaiter().GetResult();
+        }
+
+        private static async Task ProcessAsync()
+        {
+            var connectionString = "DefaultEndpointsProtocol=https;AccountName=underlords;AccountKey=+jElAWf6bgRsSZAIlefQ8+43phYUtEXPfsAN7it6nyHStGv4V1i2TeKez+2qjMvLSH/hs3WbYJe2i14F4q5FgQ==;EndpointSuffix=core.windows.net";
+
+            if (CloudStorageAccount.TryParse(connectionString, out CloudStorageAccount storageAccount))
+            {
+                var cloudBlobClient = storageAccount.CreateCloudBlobClient();
+                var cloudBlobContainer = cloudBlobClient.GetContainerReference("week-rule");
+                await cloudBlobContainer.CreateIfNotExistsAsync();
+
+                var permissions = new BlobContainerPermissions
+                {
+                    PublicAccess = BlobContainerPublicAccessType.Blob
+                };
+                await cloudBlobContainer.SetPermissionsAsync(permissions);
+
+                var file = new FileStream(@"C:\Engr_CodeRepo\SourceCode\eRetailOnWeb\src\eRetailOnWeb\Files\rule-201910-3.json", FileMode.Open);
+                var cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference("rule-201910-3.json");
+                cloudBlockBlob.Properties.ContentType = "application/json";
+                await cloudBlockBlob.UploadFromStreamAsync(file);
+                file.Close();
+            }
+            else
+            {
+                Console.WriteLine("The connection string isn't valid");
+                Console.WriteLine("Press any key to exit the application.");
+            }
         }
 
         private DayInformation CreateDayInformation(List<WeekInformation> weekInformations, string userName)
