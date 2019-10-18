@@ -6,7 +6,7 @@
 
 <h1>Underlords Ranking</h1>
 <br />
-@foreach (var item in Model.WeekInformation)
+@foreach (var item in Model.WeekInformation.OrderBy(x => x.DayOfWeek))
 {
     @Html.Label(item.Day)
     <table class="table">

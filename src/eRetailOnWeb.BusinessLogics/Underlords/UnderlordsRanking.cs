@@ -25,45 +25,40 @@ namespace eProductOnWeb.BusinessLogics.Underlords
             _blob = new Blob(_configuration);
             string contents = _blob.GetUnderlordsWeekRanking(containerName, fileName);
             Ranking ranking = JsonConvert.DeserializeObject<Ranking>(contents);
-            GetWeekOnformationTotalPoint(ranking);
+            GetWeekInformationTotalPoint(ranking);
             return ranking;
         }
 
-        private void GetWeekOnformationTotalPoint(Ranking ranking)
+        private void GetWeekInformationTotalPoint(Ranking ranking)
         {
-            WeekInformation weekInfoTotal = new WeekInformation
-            {
-                Day = "Total",
-                DayOfWeek = 99,
-                DayInformation = new List<DayInformation>()
-            };
+            List<WeekInformation> weekInfoMatchOfficial = ranking.WeekInformation.Where(x => x.MatchInformation.Officially).ToList();
+            List<WeekInformation> weekInfoMatchInformal = ranking.WeekInformation.Where(x => !x.MatchInformation.Officially).ToList();
+
+            WeekInformation weekInfoTotalOfficial = new WeekInformation(99, "Total (Officially)", new List<DayInformation>());
+            WeekInformation weekInfoTotalInformal = new WeekInformation(98, "Total (Informal)", new List<DayInformation>());
+
             WeekInformation weekInfo = ranking.WeekInformation.Where(x => x.DayOfWeek == 2).FirstOrDefault();
             foreach (var dayInformation in weekInfo.DayInformation)
             {
-                weekInfoTotal.DayInformation.Add(GetTotalPointOfPlayer(ranking.WeekInformation, dayInformation.UserName));
+                weekInfoTotalOfficial.DayInformation.Add(GetTotalPointOfPlayer(weekInfoMatchOfficial, dayInformation.UserName));
+                weekInfoTotalInformal.DayInformation.Add(GetTotalPointOfPlayer(weekInfoMatchInformal, dayInformation.UserName));
             };
 
-            ranking.WeekInformation.Add(weekInfoTotal);
+            ranking.WeekInformation.Add(weekInfoTotalOfficial);
+            ranking.WeekInformation.Add(weekInfoTotalInformal);
         }
 
         private DayInformation GetTotalPointOfPlayer(List<WeekInformation> weekInformations, string userName)
         {
-            return new DayInformation
-            {
-                UserName = userName,
-                Point = CalculateOfficialTotalPoint(weekInformations, userName),
-            };
+            return new DayInformation(userName, CalculateTotalPoint(weekInformations, userName));
         }
 
-        private double CalculateOfficialTotalPoint(List<WeekInformation> weekInformations, string userName)
+        private double CalculateTotalPoint(List<WeekInformation> weekInformations, string userName)
         {
             double totalPoint = 0;
-            foreach (WeekInformation weekInformation in weekInformations)
+            foreach (WeekInformation weekInformation in weekInformations.Where(x => x.MatchInformation.Officially))
             {
-                if (weekInformation.MatchInformation.Officially)
-                {
-                    totalPoint += weekInformation.DayInformation.Where(x => x.UserName == userName).Select(x => x.Point).FirstOrDefault();
-                }
+                totalPoint += weekInformation.DayInformation.Where(x => x.UserName == userName).Select(x => x.Point).FirstOrDefault();
             }
             return totalPoint;
         }
