@@ -12,5 +12,16 @@ namespace eProductOnWeb.Models.Underlords
         public string Rating { get; set; }
         public double Point { get; set; }
         public bool HasBuffer { get; set; }
+
+        public DayInformation()
+        {
+
+        }
+
+        public DayInformation(string userName, double point)
+        {
+            UserName = userName;
+            Point = point;
+        }
     }
 }
