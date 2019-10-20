@@ -1,0 +1,54 @@
+﻿@model eProductOnWeb.Models.Underlords.Ranking
+
+<div class="tab-pane fade show active" id="contentRanking" role="tabpanel">
+    <div class="card-body">
+        <h1>Players Table</h1>
+        <br />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="text-align: center">
+                        Player
+                    </th>
+                    <th style="text-align: center">
+                        M
+                    </th>
+                    <th style="text-align: center">
+                        Tu
+                    </th>
+                    <th style="text-align: center">
+                        W
+                    </th>
+                    <th style="text-align: center">
+                        Th
+                    </th>
+                    <th style="text-align: center">
+                        F
+                    </th>
+                    <th style="text-align: center">
+                        Informal
+                    </th>
+                    <th style="text-align: center">
+                        Official
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var playerInfo in Model.PlayerPoints.Where(x => x.DayInfo.DayOfWeek == 99).Select(x => new { x.PlayerInfo, x.Point }).OrderByDescending(x => x.Point))
+                {
+                    <tr>
+                        <td>
+                            @playerInfo.PlayerInfo.Name
+                        </td>
+                        @foreach (var dayPoint in Model.PlayerPoints.Where(x => x.PlayerInfo.Id == playerInfo.PlayerInfo.Id).OrderBy(x => x.DayInfo.DayOfWeek))
+                        {
+                            <td style="text-align: center">
+                                @dayPoint.Point
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

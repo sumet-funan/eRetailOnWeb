@@ -18,8 +18,9 @@ namespace eProductOnWeb.Models.Underlords
 
         }
 
-        public DayInformation(string userName, double point)
+        public DayInformation(int userId, string userName, double point)
         {
+            UserId = userId;
             UserName = userName;
             Point = point;
         }

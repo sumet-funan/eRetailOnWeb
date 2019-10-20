@@ -28,7 +28,8 @@ namespace eProductOnWeb.Controllers
             string containerName = "week-information";
 
             _underlordsRanking = new UnderlordsRanking(_configuration);
-            Ranking result = _underlordsRanking.GetUnderlordsWeekRanking(containerName, fileName);
+            Ranking result = _underlordsRanking.GetWeekRanking(containerName, fileName);
+            _underlordsRanking.GetPlayerRanking(result);
 
             if (result == null)
             {

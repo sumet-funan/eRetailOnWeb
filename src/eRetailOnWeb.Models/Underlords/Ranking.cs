@@ -11,5 +11,6 @@ namespace eProductOnWeb.Models.Underlords
         public int Month { get; set; }
         public int WeekOfMonth { get; set; }
         public List<WeekInformation> WeekInformation { get; set; }
+        public List<DayPoint> PlayerPoints { get; set; }
     }
 }
